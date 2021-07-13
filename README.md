@@ -6,7 +6,7 @@
 
 ## Bookmarklet:
 
-### Click the link and save the shown links to your bookmarks (Drag to your bookmark bar)
+### Click the link and save the shown link to your bookmarks (Drag to your bookmark bar)
 
 [https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.html](https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.html)
 
