@@ -10,7 +10,7 @@
   async function LoadVideos() {
     for (let i = 0; i < 8; i++) {
       let videos = Array.from(document.querySelectorAll(".lazyload-wrapper"));
-      videos[videos.length].scrollIntoView({
+      videos[videos.length - 1].scrollIntoView({
         block: "end",
         inline: "nearest",
       });
