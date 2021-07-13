@@ -6,8 +6,8 @@
 
 ##### _Recommendation: Make a folder with start & stop bookmark_
 
-[Start Auto TikTok Scroller](javascript:(function() {const script = document.createElement('script'); script.id = 'auto-scroll-bookmarklet'; script.src = 'https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.js'; document.body.appendChild(script)})())
-[Stop TikTok Scroller](javascript:(function() {const script = document.querySelector('script#auto-scroll-bookmarklet'); script.remove()})())
+[Start Auto TikTok Scroller](javascript:\(function\(\) {const script = document.createElement\('script'\); script.id = 'auto-scroll-bookmarklet'; script.src = 'https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.js'; document.body.appendChild\(script\)})\(\))
+[Stop TikTok Scroller](javascript:\(function\(\) {const script = document.querySelector\('script#auto-scroll-bookmarklet'\); script.remove\(\)}\)\(\))
 
 Click on the bookmark when wanting to activate it on TikTok
 
