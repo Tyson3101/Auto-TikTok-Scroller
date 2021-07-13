@@ -33,7 +33,7 @@ async function RefreshPage() {
   ) as HTMLSpanElement;
 
   closeBtn?.click();
-  await sleep(1000);
+  await sleep(3000);
   currentVideo?.click();
   await sleep(1000);
   (document.querySelector(".arrow-right") as HTMLImageElement)?.click();
