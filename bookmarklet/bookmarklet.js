@@ -7,16 +7,15 @@
     return duration * 1000 - minusBy;
   }
 
-  async function RefreshPage() {
-    const closeBtn = document.querySelector(".close");
-    const currentVideo = document.querySelector("span.event-delegate-mask");
-
-    closeBtn?.click();
-    await sleep(1200);
-    currentVideo?.click();
-    await sleep(1000);
-    document.querySelector(".arrow-right")?.click();
-    await sleep(1000);
+  async function LoadVideos() {
+    for (let i = 0; i < 4; i++) {
+      let videos = Array.from(document.querySelectorAll(".lazyload-wrapper"));
+      videos[videos.length - 1].scrollIntoView({
+        block: "start",
+        inline: "nearest",
+      });
+      await sleep(2000);
+    }
   }
   if (document.querySelector(".lazyload-wrapper")) {
     document
@@ -29,7 +28,7 @@
   while (true) {
     await sleep(VideoDuration(video.duration, 740));
     if (document.querySelector(".arrow-right")) downBtn.click();
-    else await RefreshPage();
+    else return;
     await sleep(1000);
     video = document.querySelector("video");
   }

@@ -26,18 +26,16 @@ function VideoDuration(duration: number, minusBy: number = 300): number {
   return duration * 1000 - minusBy;
 }
 
-async function RefreshPage() {
-  const closeBtn = document.querySelector(".close") as HTMLImageElement;
-  const currentVideo = document.querySelector(
-    "span.event-delegate-mask"
-  ) as HTMLSpanElement;
-
-  closeBtn?.click();
-  await sleep(1300);
-  currentVideo?.click();
-  await sleep(1000);
-  (document.querySelector(".arrow-right") as HTMLImageElement)?.click();
-  await sleep(1000);
+async function LoadVideos() {
+  for (let i = 0; i < 4; i++) {
+    let videos = Array.from(
+      document.querySelectorAll(".lazyload-wrapper")
+    ) as HTMLDivElement[];
+    videos[videos.length - 1].scrollIntoView({
+      block: "start",
+      inline: "nearest",
+    });
+  }
 }
 
 function StartScrolling(fullScreen: boolean) {
@@ -82,6 +80,7 @@ async function noFullSreenScroll() {
 
 async function fullScreenScroll() {
   if (videosEle === null) return;
+  await LoadVideos();
   if (document.querySelector(".lazyload-wrapper")) {
     (
       document.querySelector(
@@ -96,7 +95,7 @@ async function fullScreenScroll() {
     if (videosEle === null) return;
     await sleep(VideoDuration(video.duration, 740));
     if (document.querySelector(".arrow-right")) downBtn.click();
-    else await RefreshPage();
+    else return;
     await sleep(1000);
     video = document.querySelector("video");
   }
