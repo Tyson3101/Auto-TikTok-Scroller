@@ -1,21 +1,14 @@
-## A Chrome Extension that does the scrolling for you without the need to touch your mouse.
+# A Chrome Extension that does the scrolling for you without the need to touch your mouse.
 
-### Bookmark:
+## Bookmark:
 
- <h4>
-      Save the links to your bookmarks (Drag to your bookmark bar)
-</h4>
-      <i style="font-size: small"
-        >Recommendation: Make a folder with start & stop bookmark</i
-      ><br />
-      <a
-        href="javascript:(function() {const script = document.createElement('script'); script.id = 'auto-scroll-bookmarklet'; script.src = 'https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.js'; document.body.appendChild(script)})()"
-        >Start Auto TikTok Scroller</a
-      ><br />
-      <a
-        href="javascript:(function() {const script = document.querySelector('script#auto-scroll-bookmarklet'); script.remove()})()"
-        >Stop TikTok Scroller</a
-      >
+### Save the links to your bookmarks (Drag to your bookmark bar)
+
+##### _Recommendation: Make a folder with start & stop bookmark_
+
+[Start Auto TikTok Scroller](javascript:(function() {const script = document.createElement('script'); script.id = 'auto-scroll-bookmarklet'; script.src = 'https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.js'; document.body.appendChild(script)})())
+[Stop TikTok Scroller](javascript:(function() {const script = document.querySelector('script#auto-scroll-bookmarklet'); script.remove()})())
+
 Click on the bookmark when wanting to activate it on TikTok
 
 ![Image](./img/ScreenshotGoogleExtensionTikTok.png)
