@@ -8,12 +8,20 @@
   </head>
   <body>
     <h1>Auto TikTok Scroller</h1>
-    <p>
-      Save this link to your bookmarks:
+    <h3>
+      Save the links to your bookmarks <br />
+      <i style="font-size: small"
+        >Recommendation: Make a folder with start & stop bookmark</i
+      ><br />
       <a
-        href="javascript:(function() {const script = document.createElement('script'); script.src = 'https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.js'; document.body.appendChild(script)})()"
-        >Auto TikTok Scroller</a
-      ><br />Click on the bookmark when wanting to activate it on TikTok
-    </p>
+        href="javascript:(function() {const script = document.createElement('script'); script.id = 'auto-scroll-bookmarklet'; script.src = 'https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.js'; document.body.appendChild(script)})()"
+        >Start Auto TikTok Scroller</a
+      ><br />
+      <a
+        href="javascript:(function() {const script = document.querySelector('script#auto-scroll-bookmarklet'); script.remove()})()"
+        >Stop TikTok Scroller</a
+      >
+      <br />Click on the bookmark when wanting to activate it on TikTok
+    </h3>
   </body>
 </html>
