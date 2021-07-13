@@ -14,7 +14,7 @@
         block: "start",
         inline: "nearest",
       });
-      await sleep(2000);
+      await sleep(3000);
     }
   }
   if (document.querySelector(".lazyload-wrapper")) {

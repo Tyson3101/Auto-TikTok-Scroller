@@ -35,6 +35,7 @@ async function LoadVideos() {
       block: "start",
       inline: "nearest",
     });
+    await sleep(3000);
   }
 }
 
