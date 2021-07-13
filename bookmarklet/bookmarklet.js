@@ -1,4 +1,6 @@
 (async function () {
+  if(!window.location.host.toLowerCase().includes("tiktok.com")) return;
+  
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
