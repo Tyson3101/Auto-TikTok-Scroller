@@ -12,7 +12,7 @@
     const currentVideo = document.querySelector("span.event-delegate-mask");
 
     closeBtn?.click();
-    await sleep(3000);
+    await sleep(1200);
     currentVideo?.click();
     await sleep(1000);
     document.querySelector(".arrow-right")?.click();

@@ -3,7 +3,7 @@
 ### Bookmark:
 
  <h4>
-      Save the links to your bookmarks
+      Save the links to your bookmarks (Drag to your bookmark bar)
 </h4>
       <i style="font-size: small"
         >Recommendation: Make a folder with start & stop bookmark</i
