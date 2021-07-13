@@ -8,10 +8,10 @@
   }
 
   async function LoadVideos() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 8; i++) {
       let videos = Array.from(document.querySelectorAll(".lazyload-wrapper"));
-      videos.reverse()[0].scrollIntoView({
-        block: "start",
+      videos[videos.length].scrollIntoView({
+        block: "end",
         inline: "nearest",
       });
       await sleep(3000);
