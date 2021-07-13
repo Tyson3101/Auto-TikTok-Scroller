@@ -1,6 +1,6 @@
 (async function () {
-  if(!window.location.host.toLowerCase().includes("tiktok.com")) return;
-  
+  if(!window.location.host.toLowerCase().includes("tiktok.com")) return console.log("Auto-TikTok-Scroller Error: Not on TikTok website.");
+  else console.log("Auto-TikTok-Scroller Log: Starting bookmarklet...")
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
@@ -10,6 +10,7 @@
   }
 
   async function LoadVideos() {
+    console.log("Auto-TikTok-Scroller Log: Loading Videos...");
     for (let i = 0; i < 8; i++) {
       let videos = Array.from(document.querySelectorAll(".lazyload-wrapper"));
       videos[videos.length - 1].scrollIntoView({
@@ -28,6 +29,7 @@
   await sleep(1000);
   let downBtn = document.querySelector(".arrow-right");
   let video = document.querySelector("video");
+  console.log("Auto-TikTok-Scroller Log: Starting scrolling...");
   while (true) {
     await sleep(VideoDuration(video.duration, 740));
     if (document.querySelector(".arrow-right")) downBtn.click();
