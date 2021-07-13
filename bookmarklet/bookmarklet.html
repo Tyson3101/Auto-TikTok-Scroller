@@ -4,26 +4,51 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        background-color: rgb(51, 51, 51);
+      }
+
+      *:not(a) {
+        color: white;
+      }
+
+      a {
+        color: lightblue;
+        font-size: 3rem;
+      }
+
+      #container {
+        display: flex;
+        min-height: 80vh;
+        min-width: 80vw;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+    </style>
     <title>Auto TikTok Scroller</title>
   </head>
   <body>
     <h1>Auto TikTok Scroller</h1>
-    <h3>
-      Save the links to your bookmarks <br />
+    <div id="container">
+      <h2>Save the links to your bookmarks <i>(Drag to bookmark bar)</i></h2>
       <i style="font-size: small"
         >Recommendation: Make a folder with start & stop bookmark</i
       ><br />
-      <a
-        href="javascript:(function() {const script = document.createElement('script'); script.id = 'auto-scroll-bookmarklet'; script.src = 'https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.js'; document.body.appendChild(script)})()"
-        >Start Auto TikTok Scroller</a
-      ><br />
-      <i style="font-size: small">For if you need to stop the bookmarklet</i
-      ><br />
-      <a
-        href="javascript:(function() {const script = document.querySelector('script#auto-scroll-bookmarklet'); script.remove()})()"
-        >Stop TikTok Scroller</a
-      >
-      <br />Click on the bookmark when wanting to activate it on TikTok
-    </h3>
+      <h4>
+        <a
+          href="javascript:(function() {const script = document.createElement('script'); script.id = 'auto-scroll-bookmarklet'; script.src = 'https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.js'; document.body.appendChild(script)})()"
+          >Start Auto TikTok Scroller</a
+        ><br />
+        <i style="font-size: small">For if you need to stop the bookmarklet</i
+        ><br />
+        <a
+          href="javascript:(function() {const script = document.querySelector('script#auto-scroll-bookmarklet'); script.remove()})()"
+          >Stop TikTok Scroller</a
+        >
+      </h4>
+      <p>Click on the bookmark when wanting to activate it on TikTok</p>
+    </div>
   </body>
 </html>
