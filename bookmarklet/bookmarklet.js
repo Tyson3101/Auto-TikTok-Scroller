@@ -8,15 +8,16 @@
   }
 
   async function LoadVideos() {
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
       let videos = Array.from(document.querySelectorAll(".lazyload-wrapper"));
-      videos[videos.length - 1].scrollIntoView({
+      videos.reverse()[0].scrollIntoView({
         block: "start",
         inline: "nearest",
       });
       await sleep(3000);
     }
   }
+  await LoadVideos();
   if (document.querySelector(".lazyload-wrapper")) {
     document
       .querySelector(".lazyload-wrapper span.event-delegate-mask")

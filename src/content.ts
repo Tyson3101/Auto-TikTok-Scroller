@@ -27,12 +27,12 @@ function VideoDuration(duration: number, minusBy: number = 300): number {
 }
 
 async function LoadVideos() {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 8; i++) {
     let videos = Array.from(
       document.querySelectorAll(".lazyload-wrapper")
     ) as HTMLDivElement[];
     videos[videos.length - 1].scrollIntoView({
-      block: "start",
+      block: "end",
       inline: "nearest",
     });
     await sleep(3000);
