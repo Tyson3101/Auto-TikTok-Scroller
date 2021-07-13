@@ -8,6 +8,16 @@
 
 [https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.html](https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.html)
 
+## Extension
+
+**Option 1** – install it from source:
+
+- clone/download this repo,
+- open Chrome and go to `chrome://chrome/extensions/`,
+- enable "Developer mode",
+- click "Load unpacked extension",
+- select the `extension` folder in this repo.
+
 ![Image](./img/ScreenshotGoogleExtensionTikTok.png)
 
 #### Whenever a TikTok ends, the extension will automatically scroll to the next one for you. Great for doing homework and watching TikTok at the same time without the need to switch tabs! Just be sure to not tell your teachers.
