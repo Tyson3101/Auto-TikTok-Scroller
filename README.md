@@ -4,7 +4,7 @@
 
 ###### Scrolls down 8 times to load videos
 
-## Bookmarks:
+## Bookmarklet:
 
 ### Click the link and save the shown links to your bookmarks (Drag to your bookmark bar)
 
