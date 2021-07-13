@@ -1,5 +1,7 @@
 # A Chrome Extension that does the scrolling for you without the need to touch your mouse.
 
+###### Scrolls down 8 times to load videos
+
 ## Bookmarks:
 
 ### Click the link and save the shown links to your bookmarks (Drag to your bookmark bar)
