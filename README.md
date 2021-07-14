@@ -1,4 +1,6 @@
-# A Chrome Extension/Bookmarklet that does the TikTok scrolling for you without the need to touch your mouse.
+# [Auto-TikTok-Scroller](https://github.com/Tyson3101/Auto-TikTok-Scroller)
+
+## A Chrome Extension/Bookmarklet that does the TikTok scrolling for you without the need to touch your mouse.
 
 #### Whenever a TikTok ends, the extension will automatically scroll to the next one for you. Great for doing homework and watching TikTok at the same time without the need to switch tabs! Just be sure to not tell your teachers.
 
