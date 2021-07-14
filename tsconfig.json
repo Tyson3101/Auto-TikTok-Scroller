@@ -4,7 +4,7 @@
     "module": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "rootDir": "./src",
-    "outDir": "./dist"
+    "outDir": "extension/dist"
   },
-  "exclude": ["dist", "bookmarklet"]
+  "exclude": ["extension/dist"]
 }
