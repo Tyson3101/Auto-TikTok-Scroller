@@ -2,7 +2,7 @@
 
 #### Whenever a TikTok ends, the extension will automatically scroll to the next one for you. Great for doing homework and watching TikTok at the same time without the need to switch tabs! Just be sure to not tell your teachers.
 
-###### Scrolls down 8 times to load videos
+###### When activated, scrolls down 8 times to load videos.
 
 ## Bookmarklet:
 
