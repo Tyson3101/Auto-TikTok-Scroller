@@ -4,7 +4,7 @@
 
 ###### When activated, scrolls down 8 times to load videos.
 
-## Bookmarklet:
+## Bookmarklet
 
 ### Go to this link and save the shown link to your bookmarks (Drag to your bookmark bar)
 
