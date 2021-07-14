@@ -20,7 +20,9 @@ Link: [https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.
 
 ## Extension
 
-**Option 1** – install it from source:
+**Option 1** – Install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/auto-tiktok-scroller/gcbklloefbfhmmkoncnmekkjgkjkloco/related?hl=en-GB&authuser=0)
+
+**Option 2** – Install it from source:
 
 - clone/download this repo,
 - open Chrome and go to `chrome://extensions`,
