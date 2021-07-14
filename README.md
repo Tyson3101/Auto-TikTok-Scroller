@@ -24,11 +24,11 @@ Link: [https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.
 
 **Option 2** – Install it from source:
 
-- clone/download this repo,
-- open Chrome and go to `chrome://extensions`,
-- enable "Developer mode",
-- click "Load unpacked extension",
-- select the `extension` folder in this repo.
+- Clone/download this repo,
+- Open Chrome and go to `chrome://extensions`,
+- Enable "Developer mode",
+- Click "Load unpacked extension",
+- Select the downloaded folder.
 
 ![Image](./img/ScreenshotGoogleExtensionTikTok.png)
 
