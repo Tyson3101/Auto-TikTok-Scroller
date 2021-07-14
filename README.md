@@ -6,9 +6,11 @@
 
 ## Bookmarklet
 
-### Go to this link and save the shown link to your bookmarks (Drag to your bookmark bar)
+**Go to this link and save the shown link to your bookmarks (Drag to your bookmark bar)**
 
 Link: [https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.html](https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.html)
+
+![Gif](./img/GoogleExtensionGif.gif)
 
 ## Extension
 
