@@ -8,8 +8,6 @@
 
 - Bookmarklet: [Click here](./README.md#bookmarklet)
 
-###### When activated, scrolls down 8 times to load videos.
-
 ## Extension
 
 **Option 1** – Install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail/auto-tiktok-scroller/ngnmmnppfloibngkifccjiljhnjoleaa)
