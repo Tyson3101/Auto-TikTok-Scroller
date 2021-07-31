@@ -28,6 +28,6 @@
 
 Link: [https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.html](https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.html)
 
-![Gif](./img/GoogleExtensionGif.gif)
+<img src="./img/GoogleExtensionGif.gif" width="486" height="363" />
 
 ##### If you have any suggestions or experience problems, post an issue on the GitHub page: [https://github.com/Tyson3101/Auto-TikTok-Scroller](https://github.com/Tyson3101/Auto-TikTok-Scroller)
