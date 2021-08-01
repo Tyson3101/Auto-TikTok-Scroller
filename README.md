@@ -20,7 +20,7 @@
 - Click "Load unpacked extension",
 - Select the `extension` folder from this repo.
 
-![Image](./img/ScreenshotGoogleExtensionTikTok.png)
+<img src="./img/ScreenshotGoogleExtensionTikTok.png" width="500" height="400" />
 
 ## Bookmarklet
 
