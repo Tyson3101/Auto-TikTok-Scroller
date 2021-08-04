@@ -2,7 +2,6 @@ declare var chrome: any;
 
 let videosEle: (HTMLDivElement | HTMLVideoElement)[] = null;
 
-//@ts-ignore
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -86,6 +85,10 @@ async function fullScreenScroll() {
   }
   await sleep(1000);
   let downBtn = document.querySelector(".arrow-right") as HTMLImageElement;
+  if (downBtn) {
+    downBtn.click();
+    await sleep(1600);
+  }
   let video = document.querySelector("video");
   while (true) {
     if (videosEle === null) return;
@@ -101,7 +104,7 @@ function reload() {
   chrome.extension.sendMessage({
     start: true,
     fullScreen: true,
-    timeout: 4000,
+    timeout: 5000,
   });
   window.location.href = "https://www.tiktok.com/";
 }
