@@ -33,3 +33,5 @@ Link: [https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.
 <img src="./img/GoogleExtensionGif.gif" width="486" height="363" />
 
 ##### If you have any suggestions or experience problems, post an issue on the GitHub page: [https://github.com/Tyson3101/Auto-TikTok-Scroller/issues](https://github.com/Tyson3101/Auto-TikTok-Scroller/issues)
+
+###### By Tyson3101
