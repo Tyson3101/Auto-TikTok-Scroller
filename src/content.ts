@@ -1,9 +1,46 @@
 declare var chrome: any;
 
+console.log("Auto TikTok Scroller Extension Is Running.");
+
 let videosEle: (HTMLDivElement | HTMLVideoElement)[] = null;
+let timeout = 7550;
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+if (window.location.href === "https://www.tiktok.com/?addInfoMsg") {
+  let div = document.createElement("div");
+  let h1 = document.createElement("h1");
+  let spanBig = document.createElement("span");
+  let spanSmall = document.createElement("span");
+  h1.innerText = "TikTok Extension Restarting...";
+  spanBig.innerText = "Will restart scrolling in 7";
+  spanSmall.innerText =
+    "Delete '?addInfoMsg' from url to get rid of this popup.";
+  div.appendChild(h1);
+  div.appendChild(spanBig);
+  div.appendChild(spanSmall);
+  div.classList.add("infoMsg");
+  div.style["zIndex"] = "10000";
+  h1.style["fontSize"] = "4rem";
+  spanBig.style["fontSize"] = "1rem";
+  spanBig.style["marginRight"] = "10px";
+  spanSmall.style["fontSize"] = "0.75rem";
+  div.style["position"] = "absolute";
+  div.style["justifyContent"] = "center";
+  div.style["alignItems"] = "center";
+  div.style["minWidth"] = "100%";
+  div.style["background"] = "aliceblue";
+  let interval = setInterval(() => {
+    let num = parseInt(spanBig.innerText.split("").reverse()[0]) - 1;
+    spanBig.innerText = "Will restart scrolling in " + num;
+  }, 1000);
+  setTimeout(() => {
+    div.remove();
+    clearInterval(interval);
+  }, timeout);
+  document.body.prepend(div);
 }
 
 chrome.runtime.onConnect.addListener(function (port) {
@@ -104,7 +141,7 @@ function reload() {
   chrome.extension.sendMessage({
     start: true,
     fullScreen: true,
-    timeout: 5000,
+    timeout,
   });
-  window.location.href = "https://www.tiktok.com/";
+  window.location.href = "https://www.tiktok.com/?addInfoMsg";
 }
