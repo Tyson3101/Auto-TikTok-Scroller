@@ -1,11 +1,8 @@
 declare var chrome: any;
 
-let started = false;
-
 chrome.extension.onMessage.addListener(async (request: any) => {
   if (request.start) {
-    if (request.timeout) setTimeout(() => start(request), request.timeout);
-    else start(request);
+    start(request);
   } else if (request.stop) {
     chrome.tabs.query(
       { currentWindow: true, active: true },
@@ -18,7 +15,6 @@ chrome.extension.onMessage.addListener(async (request: any) => {
 });
 
 function start(request: any) {
-  started = true;
   chrome.tabs.query(
     { currentWindow: true, active: true },
     function (tabs: any) {
@@ -29,7 +25,6 @@ function start(request: any) {
           fullScreen: request.fullScreen,
         });
       } else {
-        started = false;
         return;
       }
     }
