@@ -1,25 +1,24 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Auto TikTok Scroller",
-  "version": "3.0.1",
-  "background": {
-    "scripts": ["./dist/background.js"]
-  },
+  "version": "4.0.0",
   "content_scripts": [
     {
       "matches": ["https://www.tiktok.com/*"],
       "js": ["./dist/content.js"]
     }
   ],
-  "permissions": ["tabs"],
+
+  "permissions": ["tabs", "activeTab"],
   "icons": {
     "16": "./img/tiktokIcon16.png",
     "48": "./img/tiktokIcon48.png",
     "128": "./img/tiktokIcon128.png"
   },
-  "browser_action": {
+  "action": {
     "default_popup": "./popup/popup.html",
     "default_icon": "./img/tiktokPopupIcon.png",
     "default_title": "Start scrolling."
-  }
+  },
+  "description": "Amazing"
 }

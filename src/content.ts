@@ -1,104 +1,65 @@
-declare var chrome: any;
+const VIDEOS_LIST_SELECTOR =
+  "#app > div.tiktok-19fglm-DivBodyContainer.e1irlpdw0 > div.tiktok-1id9666-DivMainContainer.ec6jhlz0 > div:nth-child(1)";
+const CHECK_FULLSCREEN_SELCECTOR =
+  "#app > div.tiktok-19fglm-DivBodyContainer.e1irlpdw0 > div.tiktok-7t2h2f-DivBrowserModeContainer.e11s2kul0 > div.tiktok-5uccoo-DivVideoContainer.e11s2kul27 > div.tiktok-7tjqm6-DivBlurBackground.e11s2kul8";
+const NEXT_VIDEO_ARROW = "[data-e2e='arrow-right']";
 
-console.log("Auto TikTok Scroller Extension Is Running.");
+const sleep = (milliseconds: number) => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};
 
-let videosEle: (HTMLDivElement | HTMLVideoElement)[] = null;
-let timeout = 7550;
+// -------
+let applicationIsOn = false;
+let fullscreen = false;
 
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-chrome.runtime.onConnect.addListener(function (port) {
-  if (port.name == "scroll") {
-    port.onMessage.addListener(function (response) {
-      if (
-        response.url == window.location.href &&
-        window.location.href.toLowerCase().includes("tiktok")
-      ) {
-        videosEle = [];
-        StartScrolling(response.fullScreen as boolean);
-      }
-    });
-  } else if (port.name == "stop") {
-    videosEle = null!;
+chrome.runtime.onMessage.addListener(
+  ({ start, stop, fullscreen }: { [key: string]: boolean }) => {
+    if (start) {
+      startAutoScrolling(fullscreen);
+    }
+    if (stop) stopAutoScrolling();
   }
-});
+);
 
-function VideoDuration(duration: number, minusBy: number = 300): number {
-  return duration * 1000 - minusBy;
-}
-
-function StartScrolling(fullScreen: boolean) {
-  if (videosEle === null) {
-    return;
+function startAutoScrolling(fullscn: boolean) {
+  applicationIsOn = true;
+  fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR) || fullscn;
+  if (fullscreen) {
+    //
   }
-  if (!fullScreen) return noFullSreenScroll();
-  else return fullScreenScroll();
+  getCurrentVideo();
 }
 
-async function noFullSreenScroll() {
-  videosEle = Array.from(
-    document.getElementsByClassName("lazyload-wrapper")
-  ) as HTMLDivElement[];
-  let interval = setInterval(() => {
-    if (videosEle === null) return clearInterval(interval);
-    videosEle.push(
-      ...(
-        Array.from(
-          document.getElementsByClassName("lazyload-wrapper")
-        ) as HTMLDivElement[]
-      ).slice(0, 30)
+function stopAutoScrolling() {
+  applicationIsOn = false;
+}
+
+async function getCurrentVideo() {
+  document.querySelector("video")?.addEventListener("ended", endVideoEvent);
+  await sleep(500);
+  if (applicationIsOn) getCurrentVideo();
+}
+
+async function endVideoEvent(e: Event) {
+  const VIDEOS_LIST = document.querySelector(
+    VIDEOS_LIST_SELECTOR
+  ) as HTMLVideoElement;
+  console.log("Hey");
+  if (!applicationIsOn)
+    return document.querySelector("video").removeEventListener("ended", this);
+  if (!fullscreen) {
+    let index = Array.from(VIDEOS_LIST.children).findIndex((ele) =>
+      ele.querySelector("video")
     );
-  }, 30000);
-  const indexOfInitialVid = videosEle.findIndex(() =>
-    videosEle.find((ele) => ele.querySelector("video") != null)
-  );
-  if (document.querySelector("close")) {
-    (document.querySelector("close") as HTMLImageElement).click();
-  }
-  await sleep(1000);
-  for (let i = indexOfInitialVid + 1; i < videosEle?.length ?? 0; i++) {
-    if (videosEle === null) return;
-    if (document.querySelector("close")) {
-      (document.querySelector("close") as HTMLImageElement).click();
-      await sleep(1000);
-    }
-    videosEle?.[i].scrollIntoView({
-      inline: "nearest",
-      block: "center",
+    let nextVideo = Array.from(VIDEOS_LIST.children)[index + 1];
+    nextVideo.scrollIntoView({
       behavior: "smooth",
+      inline: "center",
+      block: "center",
     });
-    await sleep(1000);
-    let video = videosEle?.[i].querySelector("video");
-    if (video) {
-      await sleep(VideoDuration(video.duration));
-    }
+  } else {
+    (document.querySelector(NEXT_VIDEO_ARROW) as HTMLButtonElement)?.click();
   }
-}
-
-async function fullScreenScroll() {
-  if (videosEle === null) return;
-  if (document.querySelector(".lazyload-wrapper")) {
-    (
-      document.querySelector(
-        ".lazyload-wrapper span.event-delegate-mask"
-      ) as HTMLSpanElement
-    )?.click();
-  }
-  await sleep(1000);
-  let downBtn = document.querySelector(".arrow-right") as HTMLImageElement;
-  if (downBtn) {
-    downBtn.click();
-    await sleep(1600);
-  }
-  let video = document.querySelector("video");
-  while (true) {
-    await sleep(VideoDuration(video.duration, 1310));
-    if (document.querySelector(".arrow-right")) downBtn.click();
-    else return;
-    await sleep(1600);
-    if (videosEle === null) return;
-    video = document.querySelector("video");
-  }
+  await sleep(3000);
+  startAutoScrolling(fullscreen);
 }
