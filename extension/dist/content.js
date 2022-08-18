@@ -7,47 +7,40 @@ const sleep = (milliseconds) => {
 // -------
 let applicationIsOn = false;
 let fullscreen = false;
-chrome.runtime.onMessage.addListener(({ start, stop, fullscreen }) => {
+chrome.runtime.onMessage.addListener(({ start, stop }) => {
     if (start) {
-        startAutoScrolling(fullscreen);
+        startAutoScrolling();
     }
     if (stop)
         stopAutoScrolling();
 });
-function startAutoScrolling(fullscn) {
+function startAutoScrolling() {
     applicationIsOn = true;
-    fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR) || fullscn;
-    if (fullscreen) {
-        //
-    }
-    getCurrentVideo();
+    fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
+    getCurrentVideoAndFullscreenStatus();
 }
-function stopAutoScrolling() {
-    applicationIsOn = false;
-}
-async function getCurrentVideo() {
+async function getCurrentVideoAndFullscreenStatus() {
+    fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
     document.querySelector("video")?.addEventListener("ended", endVideoEvent);
     await sleep(500);
     if (applicationIsOn)
-        getCurrentVideo();
+        getCurrentVideoAndFullscreenStatus();
 }
-async function endVideoEvent(e) {
+async function endVideoEvent() {
     const VIDEOS_LIST = document.querySelector(VIDEOS_LIST_SELECTOR);
-    console.log("Hey");
     if (!applicationIsOn)
         return document.querySelector("video").removeEventListener("ended", this);
-    if (!fullscreen) {
-        let index = Array.from(VIDEOS_LIST.children).findIndex((ele) => ele.querySelector("video"));
-        let nextVideo = Array.from(VIDEOS_LIST.children)[index + 1];
-        nextVideo.scrollIntoView({
-            behavior: "smooth",
-            inline: "center",
-            block: "center",
-        });
+    if (fullscreen) {
+        return document.querySelector(NEXT_VIDEO_ARROW)?.click();
     }
-    else {
-        document.querySelector(NEXT_VIDEO_ARROW)?.click();
-    }
-    await sleep(3000);
-    startAutoScrolling(fullscreen);
+    let index = Array.from(VIDEOS_LIST.children).findIndex((ele) => ele.querySelector("video"));
+    let nextVideo = Array.from(VIDEOS_LIST.children)[index + 1];
+    nextVideo.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "center",
+    });
+}
+function stopAutoScrolling() {
+    applicationIsOn = false;
 }

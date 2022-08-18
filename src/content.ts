@@ -13,53 +13,49 @@ let applicationIsOn = false;
 let fullscreen = false;
 
 chrome.runtime.onMessage.addListener(
-  ({ start, stop, fullscreen }: { [key: string]: boolean }) => {
+  ({ start, stop }: { [key: string]: boolean }) => {
     if (start) {
-      startAutoScrolling(fullscreen);
+      startAutoScrolling();
     }
     if (stop) stopAutoScrolling();
   }
 );
 
-function startAutoScrolling(fullscn: boolean) {
+function startAutoScrolling() {
   applicationIsOn = true;
-  fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR) || fullscn;
+  fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
+  getCurrentVideoAndFullscreenStatus();
+}
+
+async function getCurrentVideoAndFullscreenStatus() {
+  fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
+  document.querySelector("video")?.addEventListener("ended", endVideoEvent);
+  await sleep(500);
+  if (applicationIsOn) getCurrentVideoAndFullscreenStatus();
+}
+
+async function endVideoEvent() {
+  const VIDEOS_LIST = document.querySelector(
+    VIDEOS_LIST_SELECTOR
+  ) as HTMLVideoElement;
+  if (!applicationIsOn)
+    return document.querySelector("video").removeEventListener("ended", this);
   if (fullscreen) {
-    //
+    return (
+      document.querySelector(NEXT_VIDEO_ARROW) as HTMLButtonElement
+    )?.click();
   }
-  getCurrentVideo();
+  let index = Array.from(VIDEOS_LIST.children).findIndex((ele) =>
+    ele.querySelector("video")
+  );
+  let nextVideo = Array.from(VIDEOS_LIST.children)[index + 1];
+  nextVideo.scrollIntoView({
+    behavior: "smooth",
+    inline: "center",
+    block: "center",
+  });
 }
 
 function stopAutoScrolling() {
   applicationIsOn = false;
-}
-
-async function getCurrentVideo() {
-  document.querySelector("video")?.addEventListener("ended", endVideoEvent);
-  await sleep(500);
-  if (applicationIsOn) getCurrentVideo();
-}
-
-async function endVideoEvent(e: Event) {
-  const VIDEOS_LIST = document.querySelector(
-    VIDEOS_LIST_SELECTOR
-  ) as HTMLVideoElement;
-  console.log("Hey");
-  if (!applicationIsOn)
-    return document.querySelector("video").removeEventListener("ended", this);
-  if (!fullscreen) {
-    let index = Array.from(VIDEOS_LIST.children).findIndex((ele) =>
-      ele.querySelector("video")
-    );
-    let nextVideo = Array.from(VIDEOS_LIST.children)[index + 1];
-    nextVideo.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "center",
-    });
-  } else {
-    (document.querySelector(NEXT_VIDEO_ARROW) as HTMLButtonElement)?.click();
-  }
-  await sleep(3000);
-  startAutoScrolling(fullscreen);
 }

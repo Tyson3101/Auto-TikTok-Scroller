@@ -1,17 +1,54 @@
 <html>
   <style>
+    * {
+      text-align: center;
+    }
     body {
       min-width: 300px;
+      background-color: rgb(194, 221, 229);
+    }
+    p {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      text-decoration: underline;
+    }
+    p,
+    h4 {
+      margin-top: 0;
+      padding-top: 0;
+    }
+    button {
+      cursor: pointer;
+      border: 1px solid black;
+      height: 13vh;
+      width: 16vw;
+    }
+
+    #start {
+      background-color: rgb(157, 231, 157);
+    }
+    #stop {
+      background-color: rgb(243, 139, 139);
+    }
+    #start:hover {
+      background-color: rgb(135, 196, 135);
+    }
+    #stop:hover {
+      background-color: rgb(205, 119, 119);
     }
   </style>
   <body>
     <h1>Auto TikTok Scroller Extension</h1>
     <span style="display: block"
-      ><i>Automatically Scrolls when a TikTok ends.<br /></i
+      ><i style="font-size: 4.2vw"
+        >Automatically scrolls when a TikTok ends.<br /></i
     ></span>
-    <button id="start">Start</button> <button id="stop">Stop</button>
-    <h3>Fullscreen: <input type="checkbox" id="fullscreen" checked /></h3>
-    <i id="error" style="color: red"></i>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <i id="error" style="color: red; display: block"></i>
+    <span style="display: block"
+      ><p><br />Works in fullscreen as well!<br /></p
+    ></span>
     <h4>
       Do you enjoy this extension? Make sure to give it 5 stars on the
       <a

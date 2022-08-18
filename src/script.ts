@@ -1,4 +1,3 @@
-const fullscreenEle = document.querySelector("#fullscreen") as HTMLInputElement;
 const errMsg = document.querySelector("#error") as HTMLParagraphElement;
 
 document.onclick = (e: Event) => {
@@ -12,13 +11,11 @@ document.onclick = (e: Event) => {
       else errMsg.innerText = "Only works for Tiktok!";
     });
   if ((e.target as HTMLButtonElement).id === "start") {
-    let fullscreen = fullscreenEle.checked;
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs[0]?.url?.includes("tiktok"))
         chrome.tabs.sendMessage(tabs[0].id, {
           start: true,
           stop: false,
-          fullscreen,
         });
       else errMsg.innerText = "Only works for Tiktok!";
     });
