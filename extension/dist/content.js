@@ -15,9 +15,11 @@ chrome.runtime.onMessage.addListener(({ start, stop }) => {
         stopAutoScrolling();
 });
 function startAutoScrolling() {
-    applicationIsOn = true;
     fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
-    getCurrentVideoAndFullscreenStatus();
+    if (!applicationIsOn) {
+        applicationIsOn = true;
+        getCurrentVideoAndFullscreenStatus();
+    }
 }
 async function getCurrentVideoAndFullscreenStatus() {
     fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
@@ -44,3 +46,29 @@ async function endVideoEvent() {
 function stopAutoScrolling() {
     applicationIsOn = false;
 }
+function appendShortCutHelp() {
+    const ShortCutHelp = [
+        `<div class="tiktok-drf9az-DivKeyboardShortcutContentItem e1l04njg3 autoTikTok">Start Auto Scroller <h2>shift + a</h2></div>`,
+        `<div class="tiktok-drf9az-DivKeyboardShortcutContentItem e1l04njg3 autoTikTok">Stop Auto Scroller <h2>shift + s</h2></div>`,
+    ];
+    const element = document.querySelector("[class*='DivKeyboardShortcutContent']");
+    if (element && !element.querySelector(".autoTikTok")) {
+        ShortCutHelp.forEach((htmlString) => {
+            let divEle = new DOMParser().parseFromString(htmlString, "text/html");
+            element.append(...divEle.body.children);
+        });
+    }
+    sleep(500).then(appendShortCutHelp);
+}
+document.addEventListener("keydown", (e) => {
+    if (!e.isTrusted)
+        return;
+    if (e.key.toLowerCase() === "a" && e.shiftKey) {
+        e.preventDefault();
+        startAutoScrolling();
+    }
+    else if (e.key.toLowerCase() === "s" && e.shiftKey) {
+        e.preventDefault();
+        stopAutoScrolling();
+    }
+});
