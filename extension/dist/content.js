@@ -1,6 +1,6 @@
-const VIDEOS_LIST_SELECTOR = "#app > div.tiktok-19fglm-DivBodyContainer.e1irlpdw0 > div.tiktok-1id9666-DivMainContainer.ec6jhlz0 > div:nth-child(1)";
-const CHECK_FULLSCREEN_SELCECTOR = "#app > div.tiktok-19fglm-DivBodyContainer.e1irlpdw0 > div.tiktok-7t2h2f-DivBrowserModeContainer.e11s2kul0 > div.tiktok-5uccoo-DivVideoContainer.e11s2kul27 > div.tiktok-7tjqm6-DivBlurBackground.e11s2kul8";
+const VIDEOS_LIST_SELECTOR = "[data-e2e='recommend-list-item-container']";
 const NEXT_VIDEO_ARROW = "[data-e2e='arrow-right']";
+const CHECK_FULLSCREEN_SELCECTOR = NEXT_VIDEO_ARROW;
 const sleep = (milliseconds) => {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
@@ -27,14 +27,14 @@ async function getCurrentVideoAndFullscreenStatus() {
         getCurrentVideoAndFullscreenStatus();
 }
 async function endVideoEvent() {
-    const VIDEOS_LIST = document.querySelector(VIDEOS_LIST_SELECTOR);
+    const VIDEOS_LIST = document.querySelectorAll(VIDEOS_LIST_SELECTOR);
     if (!applicationIsOn)
         return document.querySelector("video").removeEventListener("ended", this);
     if (fullscreen) {
         return document.querySelector(NEXT_VIDEO_ARROW)?.click();
     }
-    let index = Array.from(VIDEOS_LIST.children).findIndex((ele) => ele.querySelector("video"));
-    let nextVideo = Array.from(VIDEOS_LIST.children)[index + 1];
+    let index = Array.from(VIDEOS_LIST).findIndex((ele) => ele.querySelector("video"));
+    let nextVideo = Array.from(VIDEOS_LIST)[index + 1];
     nextVideo.scrollIntoView({
         behavior: "smooth",
         inline: "center",

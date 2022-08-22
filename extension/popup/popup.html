@@ -7,10 +7,14 @@
       min-width: 300px;
       background-color: rgb(194, 221, 229);
     }
+    h1 {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
     p {
       margin-bottom: 0;
       padding-bottom: 0;
-      text-decoration: underline;
+
     }
     p,
     h4 {
@@ -23,7 +27,14 @@
       height: 13vh;
       width: 16vw;
     }
-
+    #fllscreen {
+    color: rgb(98, 93, 93);
+      font-style: oblique;
+      margin-top: 0;
+      padding-top: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
     #start {
       background-color: rgb(157, 231, 157);
     }
@@ -40,17 +51,25 @@
   <body>
     <h1>Auto TikTok Scroller Extension</h1>
     <span style="display: block"
-      ><i style="font-size: 4.2vw"
-        >Automatically scrolls when a TikTok ends.<br /></i
+      ><i style="font-size: 4.2vw"></i>
+        <br />Automatically scrolls when a TikTok ends.<br /></i
     ></span>
+    <span id="fllscreen" style="display: block"
+          >Works in fullscreen as well!<br /></span>
     <button id="start">Start</button>
     <button id="stop">Stop</button>
     <i id="error" style="color: red; display: block"></i>
     <span style="display: block"
-      ><p><br />Works in fullscreen as well!<br /></p
+      ><p id="ad">
+        <br />Prefer YT Shorts?
+        <a
+          href="https://chrome.google.com/webstore/detail/auto-youtube-shorts-scroller/elggcfikfbaijgcofcapgeahjaclpfnf"
+          target="_blank"
+          >Download the Shorts version!</a
+        ><br /></p
     ></span>
     <h4>
-      Do you enjoy this extension? Make sure to give it 5 stars on the
+      Do you enjoy this extension? Make sure to give it 5 stars on the 
       <a
         href="https://chrome.google.com/webstore/detail/auto-tiktok-scroller/ngnmmnppfloibngkifccjiljhnjoleaa"
         target="_blank"
