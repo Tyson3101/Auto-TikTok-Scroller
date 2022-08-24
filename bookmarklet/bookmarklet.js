@@ -76,7 +76,10 @@ showShortCutsOnStartUp();
   })();
   (function removeCommentsFromDom() {
     removeComments = window.localStorage.getItem("removeComments") === "true";
-    if (removeComments && fullscreen) {
+    if (
+      removeComments &&
+      !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR)
+    ) {
       try {
         Array.from(
           document.querySelectorAll("[class*='DivContentContainer']")
