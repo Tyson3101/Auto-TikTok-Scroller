@@ -9,29 +9,43 @@ const sleep = (milliseconds: number) => {
 // -------
 let applicationIsOn = false;
 let fullscreen = false;
+let removeComments = false;
 
-chrome.runtime.onMessage.addListener(
-  ({ start, stop }: { [key: string]: boolean }) => {
-    if (start) {
-      startAutoScrolling();
-    }
-    if (stop) stopAutoScrolling();
+(async function initiate() {
+  chrome.storage.local.get(["applicationIsOn"], (result) => {
+    if (result.applicationIsOn) startAutoScrolling();
+  });
+  chrome.storage.local.get(["removeComments"], (result) => {
+    removeComments = result as unknown as boolean;
+  });
+})();
+
+document.addEventListener("keydown", (e) => {
+  if (!e.isTrusted) return;
+  if (e.key.toLowerCase() === "s" && e.shiftKey) {
+    e.preventDefault();
+    applicationIsOn ? stopAutoScrolling() : startAutoScrolling();
+  } else if (e.key.toLowerCase() === "f" && e.shiftKey) {
+    removeComments = !removeComments;
+    chrome.storage.local.set({ removeComments: removeComments });
   }
-);
+});
+
+chrome.runtime.onMessage.addListener(({ toggle }: { toggle: boolean }) => {
+  if (toggle) {
+    chrome.storage.local.get(["applicationIsOn"], (result) => {
+      if (!result.applicationIsOn) startAutoScrolling();
+      if (result.applicationIsOn) stopAutoScrolling();
+    });
+  }
+});
 
 function startAutoScrolling() {
   fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
   if (!applicationIsOn) {
     applicationIsOn = true;
-    getCurrentVideoAndFullscreenStatus();
+    chrome.storage.local.set({ applicationIsOn: true });
   }
-}
-
-async function getCurrentVideoAndFullscreenStatus() {
-  fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
-  document.querySelector("video")?.addEventListener("ended", endVideoEvent);
-  await sleep(500);
-  if (applicationIsOn) getCurrentVideoAndFullscreenStatus();
 }
 
 async function endVideoEvent() {
@@ -49,41 +63,64 @@ async function endVideoEvent() {
     ele.querySelector("video")
   );
   let nextVideo = Array.from(VIDEOS_LIST)[index + 1];
-  nextVideo.scrollIntoView({
-    behavior: "smooth",
-    inline: "center",
-    block: "center",
-  });
+  if (nextVideo) {
+    nextVideo.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "center",
+    });
+  }
 }
 
 function stopAutoScrolling() {
   applicationIsOn = false;
+  chrome.storage.local.set({ applicationIsOn: false });
 }
 
-function appendShortCutHelp() {
-  const ShortCutHelp = [
-    `<div class="tiktok-drf9az-DivKeyboardShortcutContentItem e1l04njg3 autoTikTok">Start Auto Scroller <h2>shift + a</h2></div>`,
-    `<div class="tiktok-drf9az-DivKeyboardShortcutContentItem e1l04njg3 autoTikTok">Stop Auto Scroller <h2>shift + s</h2></div>`,
-  ];
-  const element = document.querySelector(
-    "[class*='DivKeyboardShortcutContent']"
-  );
-  if (element && !element.querySelector(".autoTikTok")) {
-    ShortCutHelp.forEach((htmlString) => {
-      let divEle = new DOMParser().parseFromString(htmlString, "text/html");
-      element.append(...divEle.body.children);
-    });
-  }
-  sleep(500).then(appendShortCutHelp);
-}
-
-document.addEventListener("keydown", (e) => {
-  if (!e.isTrusted) return;
-  if (e.key.toLowerCase() === "a" && e.shiftKey) {
-    e.preventDefault();
-    startAutoScrolling();
-  } else if (e.key.toLowerCase() === "s" && e.shiftKey) {
-    e.preventDefault();
-    stopAutoScrolling();
-  }
-});
+(function loop() {
+  (function getCurrentVideoAndFullscreenStatus() {
+    if (applicationIsOn) {
+      fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
+      document.querySelector("video")?.addEventListener("ended", endVideoEvent);
+    }
+  })();
+  (function appendShortCutHelp() {
+    const ShortCutHelp = [
+      `<div class="tiktok-drf9az-DivKeyboardShortcutContentItem e1l04njg3 autoTikTok">Toggle On/Off Auto Scroller <h2>shift + s</h2></div>`,
+      `<div class="tiktok-drf9az-DivKeyboardShortcutContentItem e1l04njg3 autoTikTok">Remove Fullscreen Coments <h2>shift + f</h2></div>`,
+    ];
+    const element = document.querySelector(
+      "[class*='DivKeyboardShortcutContent']"
+    );
+    if (element && !element.querySelector(".autoTikTok")) {
+      ShortCutHelp.forEach((htmlString) => {
+        let divEle = new DOMParser().parseFromString(htmlString, "text/html");
+        element.append(...divEle.body.children);
+      });
+    }
+  })();
+  (function removeCommentsFromDom() {
+    if (removeComments && fullscreen) {
+      try {
+        (
+          Array.from(
+            document.querySelectorAll("[class*='DivContentContainer']")
+          ).find((ele) =>
+            ele.parentElement.querySelector("video")
+          ) as HTMLDivElement
+        ).style.display = "none";
+      } catch {}
+    } else {
+      try {
+        (
+          Array.from(
+            document.querySelectorAll("[class*='DivContentContainer']")
+          ).find((ele) =>
+            ele.parentElement.querySelector("video")
+          ) as HTMLDivElement
+        ).style.display = "block";
+      } catch {}
+    }
+  })();
+  sleep(100).then(loop);
+})();

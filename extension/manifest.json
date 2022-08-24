@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
   "name": "Auto TikTok Scroller",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "content_scripts": [
     {
       "matches": ["https://www.tiktok.com/*"],
       "js": ["./dist/content.js"]
     }
   ],
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "storage"],
   "icons": {
     "16": "./img/tiktokIcon16.png",
     "48": "./img/tiktokIcon48.png",

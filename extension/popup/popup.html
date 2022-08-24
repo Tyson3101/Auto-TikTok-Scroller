@@ -11,21 +11,24 @@
       margin-bottom: 0;
       padding-bottom: 0;
     }
-    p {
+    #adYt {
       margin-bottom: 0;
       padding-bottom: 0;
 
     }
-    p,
-    h4 {
+    #adChrome,
+    #adYt {
       margin-top: 0;
       padding-top: 0;
     }
     button {
       cursor: pointer;
+    }
+    .toggleBtn {
       border: 1px solid black;
-      height: 13vh;
-      width: 16vw;
+      height: 20vh;
+      width: 50vw;
+      font-size: 1.5rem;
     }
     #fllscreen {
     color: rgb(98, 93, 93);
@@ -35,17 +38,41 @@
       margin-bottom: 0;
       padding-bottom: 0;
     }
-    #start {
+    .start {
       background-color: rgb(157, 231, 157);
     }
-    #stop {
+    .stop {
       background-color: rgb(243, 139, 139);
     }
-    #start:hover {
+    .start:hover {
       background-color: rgb(135, 196, 135);
     }
-    #stop:hover {
+    .stop:hover {
       background-color: rgb(205, 119, 119);
+    }
+
+    .shortCuts {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top:0.2rem;
+    }
+
+    .shortCut {
+      border: 1px solid black;
+      background-color: rgb(165, 195, 204);
+      width: fit-content;
+      margin-bottom:0.2rem;
+      position: absolute;
+      padding: 0 0.8rem;
+      top: 1rem;
+    }
+    .shortCut span {
+      padding: 0.2em;
+    }
+    .remove {
+      display: none;
     }
   </style>
   <body>
@@ -56,11 +83,17 @@
     ></span>
     <span id="fllscreen" style="display: block"
           >Works in fullscreen as well!<br /></span>
-    <button id="start">Start</button>
-    <button id="stop">Stop</button>
+    <button class="toggleBtn">Start</button>
     <i id="error" style="color: red; display: block"></i>
+    <div class="shortCuts">
+      <div class="shortCut remove">
+        <p>Toggle Auto Scroller: <span>shift + s</span></p>
+        <p>Remove Comment/Fullscreen: <span>shift + f</span></p>
+      </div>
+      <button id="shortCutBtn">Show Shortcuts</button>
+    </div>
     <span style="display: block"
-      ><p id="ad">
+      ><p id="adYt">
         <br />Prefer YT Shorts?
         <a
           href="https://chrome.google.com/webstore/detail/auto-youtube-shorts-scroller/elggcfikfbaijgcofcapgeahjaclpfnf"
@@ -68,7 +101,7 @@
           >Download the Shorts version!</a
         ><br /></p
     ></span>
-    <h4>
+    <h4 id="adChrome">
       Do you enjoy this extension? Make sure to give it 5 stars on the 
       <a
         href="https://chrome.google.com/webstore/detail/auto-tiktok-scroller/ngnmmnppfloibngkifccjiljhnjoleaa"
