@@ -16,7 +16,10 @@ document.addEventListener("keydown", (e) => {
     applicationIsOn ? stopAutoScrolling() : startAutoScrolling();
   } else if (e.key.toLowerCase() === "f" && e.shiftKey) {
     removeComments = !removeComments;
-    window.localStorage.setItem("removeComments", "true");
+    window.localStorage.setItem(
+      "removeCommentsAutoTikTok",
+      `${removeComments}`
+    );
   }
 });
 
@@ -54,8 +57,8 @@ showShortCutsOnStartUp();
 
 (function loop() {
   (function getCurrentVideoAndFullscreenStatus() {
+    fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
     if (applicationIsOn) {
-      fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
       document.querySelector("video")?.addEventListener("ended", endVideoEvent);
     }
   })();
@@ -75,11 +78,9 @@ showShortCutsOnStartUp();
     }
   })();
   (function removeCommentsFromDom() {
-    removeComments = window.localStorage.getItem("removeComments") === "true";
-    if (
-      removeComments &&
-      !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR)
-    ) {
+    removeComments =
+      window.localStorage.getItem("removeCommentsAutoTikTok") === "true";
+    if (removeComments && fullscreen) {
       try {
         Array.from(
           document.querySelectorAll("[class*='DivContentContainer']")
@@ -101,18 +102,20 @@ showShortCutsOnStartUp();
 })();
 
 function showShortCutsOnStartUp() {
-  const rawHtmlString = `<div style="margin: 1vw; position: absolute; border: 2px soild black;width: fit-content;height: fit-content;background-color: rgb(238, 167, 167);box-shadow: 10px 10px 5px lightblue; z-index: 9999;" class="autoTikTok-shortcuts-popup">
+  const rawHtmlString = `<div style="margin: 1vw; position: absolute; border: 2px soild black;width: 500px;height: fit-content;background-color: rgb(238, 167, 167);box-shadow: 10px 10px 5px lightblue; z-index: 9999;" class="autoTikTok-shortcuts-popup">
       <h1>Auto TikTok Scroller Shortcuts&nbsp;</h1>
+      <p style="font-size: small"><i>Won't work properly if Auto TikTok Scroller Chrome Extension is installed</i></p>
       <h3><i>${applicationIsOn ? "Scroller Status: On" : "Status: Off"}</i></h3>
       <h3><i>${
-        removeComments
+        window.localStorage.getItem("removeCommentsAutoTikTok") === "true"
           ? "Fullscreen Comments Status: Removed"
-          : "Status: Not Removed"
+          : "Fullscreen Comments Status: Not Removed"
       }</i></h3>
-      <div style="margin-left: 3vw;" class="autoTikTok-commands">
+      <div style='margin-left: 3vw' class="autoTikTok-commands">
         <h2>Toggle Scroller: <code style="background-color: rgba(20,20,20, 0.2);" class="autoTikTok-command">shift + s</code></h2>
         <h2>Toggle Fullscreen Comments: <code style="background-color: rgba(20,20,20, 0.2);" class="autoTikTok-command">shift + f</code></h2>
       </div>
+
     </div>`;
   let parsedHtml = new DOMParser().parseFromString(rawHtmlString, "text/html");
   document.body.prepend(...parsedHtml.body.children);

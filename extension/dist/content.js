@@ -8,13 +8,16 @@ const sleep = (milliseconds) => {
 let applicationIsOn = false;
 let fullscreen = false;
 let removeComments = false;
-(async function initiate() {
+(function initiate() {
     chrome.storage.local.get(["applicationIsOn"], (result) => {
+        if (result.applicationIsOn == null) {
+            return startAutoScrolling();
+        }
         if (result.applicationIsOn)
             startAutoScrolling();
     });
     chrome.storage.local.get(["removeComments"], (result) => {
-        removeComments = result;
+        removeComments = !!result.removeComments;
     });
 })();
 document.addEventListener("keydown", (e) => {
@@ -69,8 +72,8 @@ function stopAutoScrolling() {
 }
 (function loop() {
     (function getCurrentVideoAndFullscreenStatus() {
+        fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
         if (applicationIsOn) {
-            fullscreen = !!document.querySelector(CHECK_FULLSCREEN_SELCECTOR);
             document.querySelector("video")?.addEventListener("ended", endVideoEvent);
         }
     })();
