@@ -90,7 +90,7 @@ function stopAutoScrolling() {
   (function appendShortCutHelp() {
     const ShortCutHelp = [
       `<div class="tiktok-drf9az-DivKeyboardShortcutContentItem e1l04njg3 autoTikTok">Toggle On/Off Auto Scroller <h2>shift + s</h2></div>`,
-      `<div class="tiktok-drf9az-DivKeyboardShortcutContentItem e1l04njg3 autoTikTok">Remove Fullscreen Coments <h2>shift + f</h2></div>`,
+      `<div class="tiktok-drf9az-DivKeyboardShortcutContentItem e1l04njg3 autoTikTok">Toggle Fullscreen Coments <h2>shift + f</h2></div>`,
     ];
     const element = document.querySelector(
       "[class*='DivKeyboardShortcutContent']"
