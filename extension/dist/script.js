@@ -24,12 +24,10 @@ function changeToggleButton(result) {
         toggleBtn.innerText = "Stop";
         toggleBtn.classList.remove("start");
         toggleBtn.classList.add("stop");
-        chrome.action.setIcon({ path: "../img/tiktokIcon128.png" });
     }
     if (!result) {
         toggleBtn.innerText = "Start";
         toggleBtn.classList.add("start");
         toggleBtn.classList.remove("stop");
-        chrome.action.setIcon({ path: "../img/tiktokIcon128Off.png" });
     }
 }
