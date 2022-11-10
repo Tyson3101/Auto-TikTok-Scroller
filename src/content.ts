@@ -26,7 +26,6 @@ let removeComments = false;
 document.addEventListener("keydown", (e) => {
   if (!e.isTrusted) return;
   if (e.key.toLowerCase() === "s" && e.shiftKey) {
-    e.preventDefault();
     applicationIsOn ? stopAutoScrolling() : startAutoScrolling();
   } else if (e.key.toLowerCase() === "f" && e.shiftKey) {
     removeComments = !removeComments;
@@ -103,25 +102,27 @@ function stopAutoScrolling() {
     }
   })();
   (function removeCommentsFromDom() {
+    const comments = Array.from(
+      document.querySelectorAll("[class*='DivContentContainer']")
+    ).find((ele) =>
+      ele.querySelector("[class*='DivCommentListContainer']")
+    ) as HTMLDivElement;
+    const commentsList = comments?.querySelector(
+      "[class*='DivCommentListContainer']"
+    ) as HTMLDivElement;
     if (removeComments && fullscreen) {
       try {
-        (
-          Array.from(
-            document.querySelectorAll("[class*='DivContentContainer']")
-          ).find((ele) =>
-            ele.parentElement.querySelector("video")
-          ) as HTMLDivElement
-        ).style.display = "none";
+        if (comments) {
+          if (commentsList) commentsList.style.overflow = "hidden auto";
+          comments.style.display = "none";
+        }
       } catch {}
     } else {
       try {
-        (
-          Array.from(
-            document.querySelectorAll("[class*='DivContentContainer']")
-          ).find((ele) =>
-            ele.parentElement.querySelector("video")
-          ) as HTMLDivElement
-        ).style.display = "block";
+        if (comments) {
+          if (commentsList) commentsList.style.overflow = "hidden auto";
+          comments.style.display = "";
+        }
       } catch {}
     }
   })();
