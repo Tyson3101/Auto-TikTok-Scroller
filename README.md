@@ -1,5 +1,7 @@
 # [Auto-TikTok-Scroller](https://github.com/Tyson3101/Auto-TikTok-Scroller)
 
+# I NO LONGER OWN THIS EXTENSION ):
+
 ## A Chrome Extension/Bookmarklet that adds an auto-scroll feature on TikTok so you can watch TikToks without the need to touch your mouse.
 
 <img src="https://github.com/Tyson3101/Auto-TikTok-Scroller/blob/4a0ee87d9b2e0a3c2e5eec1b67df8c4a9451c71d/extension/img/tiktokIcon128.png?raw=true"/>
@@ -33,5 +35,8 @@ Link: [https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.
 <img src="./img/GoogleExtensionGif.gif" width="486" height="363" />
 
 ##### If you have any suggestions or experience problems, post an issue on the GitHub page: [https://github.com/Tyson3101/Auto-TikTok-Scroller/issues](https://github.com/Tyson3101/Auto-TikTok-Scroller/issues)
+
+![image](https://github.com/Tyson3101/Auto-TikTok-Scroller/assets/67045138/7d872567-2632-4b91-9beb-777401faa92b)
+
 
 ###### By Tyson3101
