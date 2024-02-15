@@ -16,7 +16,7 @@
   },
   "action": {
     "default_popup": "./popup/popup.html",
-    "default_icon": "./img/tiktokPopupIcon.png",
+    "default_icon": "./img/tiktokIcon128.png",
     "default_title": "Start scrolling!"
   },
   "description": "Auto TikTok Scroller is a helpful tool to automatically scroll to the next TikTok when one ends."

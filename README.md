@@ -12,7 +12,7 @@
 
 ## Extension
 
-**Option 1** – Soon
+**Option 1** – Install it from the [Chrome Web Store](https://chromewebstore.google.com/detail/hmajbmalffndhiaegjpobejadjiklfci)
 
 **Option 2** – Install it from source:
 
@@ -35,6 +35,5 @@ Link: [https://tyson3101.github.io/Auto-TikTok-Scroller/bookmarklet/bookmarklet.
 ##### If you have any suggestions or experience problems, post an issue on the GitHub page: [https://github.com/Tyson3101/Auto-TikTok-Scroller/issues](https://github.com/Tyson3101/Auto-TikTok-Scroller/issues)
 
 ![image](https://github.com/Tyson3101/Auto-TikTok-Scroller/assets/67045138/7d872567-2632-4b91-9beb-777401faa92b)
-
 
 ###### By Tyson3101
