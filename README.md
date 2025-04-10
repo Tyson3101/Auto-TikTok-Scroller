@@ -1,6 +1,6 @@
 # [Auto-TikTok-Scroller](https://github.com/Tyson3101/Auto-TikTok-Scroller)
 
-# --- No Longer Supported ! Tiktok has this feature now built in! ---
+#### --- No Longer Supported ! Tiktok has this feature now built in! ---
 
 ## A Chrome Extension/Bookmarklet that adds an auto-scroll feature on TikTok so you can watch TikToks without the need to touch your mouse.
 
